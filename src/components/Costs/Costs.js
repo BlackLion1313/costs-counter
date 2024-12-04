@@ -9,8 +9,8 @@ const Costs = (props) => {
   const filteredCosts =
     selectedYear === "All"
       ? props.costs
-      : props.costs.filter((cost) =>
-          cost.date.toString().includes(selectedYear)
+      : props.costs.filter(
+          (cost) => cost.date.getFullYear().toString() === selectedYear
         );
 
   const yearChangeHandler = (year) => {
