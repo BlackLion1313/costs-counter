@@ -5,17 +5,26 @@ import CostsFilter from "./CostFilter";
 import { useState } from "react";
 
 const Costs = (props) => {
-  const [selectedYear, setSelectedYear] = useState("2022");
+  const [selectedYear, setSelectedYear] = useState("All");
+  const filteredCosts =
+    selectedYear === "All"
+      ? props.costs
+      : props.costs.filter((cost) =>
+          cost.date.toString().includes(selectedYear)
+        );
 
   const yearChangeHandler = (year) => {
     setSelectedYear(year);
-    console.log("year", year);
   };
   return (
     <div>
       <Card className="costs">
-        <CostsFilter year={selectedYear} onChangeYear={yearChangeHandler} />
-        {props.costs.map((cost) => (
+        <CostsFilter
+          year={selectedYear}
+          costs={props.costs}
+          onChangeYear={yearChangeHandler}
+        />
+        {filteredCosts.map((cost) => (
           <CostItem
             key={cost.id}
             date={cost.date}

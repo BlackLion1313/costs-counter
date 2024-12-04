@@ -53,7 +53,7 @@ const CostForm = (props) => {
             type="date"
             value={date}
             onChange={dateChangeHandler}
-            min="2020-01-01"
+            min="2019-01-01"
             step="2024-12-02"
           />
         </div>
